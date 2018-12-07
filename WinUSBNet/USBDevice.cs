@@ -774,5 +774,28 @@ namespace MadWizard.WinUSBNet
             }
         }
 
+        /// <summary>
+        /// Extracts a string at index idx from the device descriptor.
+        /// </summary>
+        /// <param name="idx">The index of the string requested</param>
+        /// <returns>The requested string, if it exists</returns>
+        /// <exception cref="USBException"></exception>
+        public string GetStringDescriptor(byte idx)
+        {
+            if (string.IsNullOrEmpty(Descriptor.PathName))
+                throw new USBException("Device Path Name is empty.");
+
+            string pathName = Descriptor.PathName;
+
+            // Get first supported language ID
+            ushort[] langIDs = _wuDevice.GetSupportedLanguageIDs();
+            ushort langID = 0;
+            if (langIDs.Length > 0)
+                langID = langIDs[0];
+
+            // Get string at index idx
+            return _wuDevice.GetStringDescriptor(idx, langID);
+        }
+
     }
 }
