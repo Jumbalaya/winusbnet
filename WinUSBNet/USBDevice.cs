@@ -125,6 +125,13 @@ namespace MadWizard.WinUSBNet
             }
         }
 
+        public enum ConnectSpeed
+        {
+            Unknown = 0x00,
+            FullSpeedOrLowSpeed = 0x01,
+            HighSpeed = 0x03,
+        }
+
         private void InitializeInterfaces()
         {
             int numInterfaces = _wuDevice.InterfaceCount;
@@ -797,5 +804,13 @@ namespace MadWizard.WinUSBNet
             return InternalDevice.GetStringDescriptor(idx, langID);
         }
 
+        /// <summary>
+        /// Returns the connection speed (low-speed, full-speed or high-speed) of the device
+        /// </summary>
+        /// <returns>The <see cref="ConnectSpeed"/> of the device</returns>
+        public ConnectSpeed GetConnectSpeed()
+        {
+            return (ConnectSpeed)InternalDevice.GetDeviceInformation();
+        }
     }
 }

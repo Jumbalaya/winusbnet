@@ -472,5 +472,25 @@ namespace MadWizard.WinUSBNet.API
                 throw APIException.Win32("Failed to get WinUSB pipe policy.");
             return result;
         }
+
+        /// <summary>
+        /// Get the USB connection speed using WinUsb_QueryDeviceInformation
+        /// </summary>
+        /// <returns></returns>
+        public byte GetDeviceInformation()
+        {
+            if (_winUsbHandle == IntPtr.Zero)
+            {
+                return 0;
+            }
+            uint length = 1;
+            bool success = WinUsb_QueryDeviceInformation(_winUsbHandle, DEVICE_SPEED, ref length, out byte speed);
+            if (!success || length != 1)
+            {
+                throw APIException.Win32("Failed to get WinUSB device information.");
+            }
+            return speed;
+        }
     }
 }
+
