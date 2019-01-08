@@ -97,6 +97,14 @@ namespace MadWizard.WinUSBNet
             }
         }
 
+        public bool IsBulk
+        {
+            get
+            {
+                return _pipeInfo.PipeType == API.USBD_PIPE_TYPE.UsbdPipeTypeBulk;
+            }
+        }
+
         /// <summary>
         /// Reads data from the pipe into a buffer.
         /// </summary>
