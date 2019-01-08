@@ -92,7 +92,7 @@ namespace MadWizard.WinUSBNet.API
 
     partial class WinUSBDevice
     {
-        private const UInt32 DEVICE_SPEED = ((UInt32)(1));
+        private const uint DEVICE_SPEED = 1;
 
         private enum USB_DEVICE_SPEED : int
         {

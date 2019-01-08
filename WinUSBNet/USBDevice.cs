@@ -788,13 +788,13 @@ namespace MadWizard.WinUSBNet
             string pathName = Descriptor.PathName;
 
             // Get first supported language ID
-            ushort[] langIDs = _wuDevice.GetSupportedLanguageIDs();
+            ushort[] langIDs = InternalDevice.GetSupportedLanguageIDs();
             ushort langID = 0;
             if (langIDs.Length > 0)
                 langID = langIDs[0];
 
             // Get string at index idx
-            return _wuDevice.GetStringDescriptor(idx, langID);
+            return InternalDevice.GetStringDescriptor(idx, langID);
         }
 
     }
