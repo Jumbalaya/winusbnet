@@ -88,6 +88,8 @@ namespace MadWizard.WinUSBNet.API
         ALLOW_PARTIAL_READS,
         AUTO_FLUSH,
         RAW_IO,
+        MAXIMUM_TRANSFER_SIZE,
+        RESET_PIPE_ON_RESUME,
     }
 
     partial class WinUSBDevice

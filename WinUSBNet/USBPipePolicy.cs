@@ -174,5 +174,13 @@ namespace MadWizard.WinUSBNet
             }
         }
 
+        public int MaximumPacketSize
+        {
+            get
+            {
+                return (int)_device.InternalDevice.GetPipePolicyUInt(_interfaceIndex, _pipeID, API.POLICY_TYPE.MAXIMUM_TRANSFER_SIZE);
+            }
+        }
+
     }
 }
